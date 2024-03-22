@@ -1,4 +1,5 @@
-export const baseUrl = "http://127.0.0.1:8000/admin/";
+// export const baseUrl = "http://127.0.0.1:8000/admin/";
+export const baseUrl = "https://justpark-backend.onrender.com/admin/";
 
 // urls
 export const loginPost = "admin-login/";
