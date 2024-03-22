@@ -4,12 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "../../utils/axios";
 import { add_new_place } from "../../utils/Constants"; // Assuming you have a constant for the API endpoint
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const AddPlace = () => {
   const token = useSelector((state) => state.token);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -42,7 +43,7 @@ const AddPlace = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        navi;
+        navigate("/place");
         toast.success("Place details updated successfully", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 3000,
