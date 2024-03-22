@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useRef, useEffect, useState } from "react";
 import { useThemeProvider } from "../utils/ThemeContext";
 
@@ -38,12 +39,44 @@ function BarChart01({ data, width, height }) {
     tooltipBgColor,
     tooltipBorderColor,
   } = chartColors;
+=======
+import React, { useRef, useEffect, useState } from 'react';
+import { useThemeProvider } from '../utils/ThemeContext';
+
+import { chartColors } from './ChartjsConfig';
+import {
+  Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
+} from 'chart.js';
+import 'chartjs-adapter-moment';
+
+// Import utilities
+import { tailwindConfig, formatValue } from '../utils/Utils';
+
+Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
+
+function BarChart01({
+  data,
+  width,
+  height
+}) {
+
+  const [chart, setChart] = useState(null)
+  const canvas = useRef(null);
+  const legend = useRef(null);
+  const { currentTheme } = useThemeProvider();
+  const darkMode = currentTheme === 'dark';
+  const { textColor, gridColor, tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors;
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
 
   useEffect(() => {
     const ctx = canvas.current;
     // eslint-disable-next-line no-unused-vars
     const newChart = new Chart(ctx, {
+<<<<<<< HEAD
       type: "bar",
+=======
+      type: 'bar',
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
       data: data,
       options: {
         layout: {
@@ -69,12 +102,21 @@ function BarChart01({ data, width, height }) {
             },
           },
           x: {
+<<<<<<< HEAD
             type: "time",
             time: {
               parser: "MM-DD-YYYY",
               unit: "month",
               displayFormats: {
                 month: "MMM YY",
+=======
+            type: 'time',
+            time: {
+              parser: 'MM-DD-YYYY',
+              unit: 'month',
+              displayFormats: {
+                month: 'MMM YY',
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
               },
             },
             border: {
@@ -97,6 +139,7 @@ function BarChart01({ data, width, height }) {
               title: () => false, // Disable tooltip title
               label: (context) => formatValue(context.parsed.y),
             },
+<<<<<<< HEAD
             bodyColor: darkMode
               ? tooltipBodyColor.dark
               : tooltipBodyColor.light,
@@ -106,11 +149,20 @@ function BarChart01({ data, width, height }) {
             borderColor: darkMode
               ? tooltipBorderColor.dark
               : tooltipBorderColor.light,
+=======
+            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
+            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
+            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
           },
         },
         interaction: {
           intersect: false,
+<<<<<<< HEAD
           mode: "nearest",
+=======
+          mode: 'nearest',
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
         },
         animation: {
           duration: 500,
@@ -120,7 +172,11 @@ function BarChart01({ data, width, height }) {
       },
       plugins: [
         {
+<<<<<<< HEAD
           id: "htmlLegend",
+=======
+          id: 'htmlLegend',
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
           afterUpdate(c, args, options) {
             const ul = legend.current;
             if (!ul) return;
@@ -131,6 +187,7 @@ function BarChart01({ data, width, height }) {
             // Reuse the built-in legendItems generator
             const items = c.options.plugins.legend.labels.generateLabels(c);
             items.forEach((item) => {
+<<<<<<< HEAD
               const li = document.createElement("li");
               li.style.marginRight = tailwindConfig().theme.margin[4];
               // Button element
@@ -148,10 +205,27 @@ function BarChart01({ data, width, height }) {
               // Color box
               const box = document.createElement("span");
               box.style.display = "block";
+=======
+              const li = document.createElement('li');
+              li.style.marginRight = tailwindConfig().theme.margin[4];
+              // Button element
+              const button = document.createElement('button');
+              button.style.display = 'inline-flex';
+              button.style.alignItems = 'center';
+              button.style.opacity = item.hidden ? '.3' : '';
+              button.onclick = () => {
+                c.setDatasetVisibility(item.datasetIndex, !c.isDatasetVisible(item.datasetIndex));
+                c.update();
+              };
+              // Color box
+              const box = document.createElement('span');
+              box.style.display = 'block';
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
               box.style.width = tailwindConfig().theme.width[3];
               box.style.height = tailwindConfig().theme.height[3];
               box.style.borderRadius = tailwindConfig().theme.borderRadius.full;
               box.style.marginRight = tailwindConfig().theme.margin[2];
+<<<<<<< HEAD
               box.style.borderWidth = "3px";
               box.style.borderColor = item.fillStyle;
               box.style.pointerEvents = "none";
@@ -176,6 +250,27 @@ function BarChart01({ data, width, height }) {
                 (a, b) => a + b,
                 0
               );
+=======
+              box.style.borderWidth = '3px';
+              box.style.borderColor = item.fillStyle;
+              box.style.pointerEvents = 'none';
+              // Label
+              const labelContainer = document.createElement('span');
+              labelContainer.style.display = 'flex';
+              labelContainer.style.alignItems = 'center';
+              const value = document.createElement('span');
+              value.classList.add('text-slate-800', 'dark:text-slate-100');
+              value.style.fontSize = tailwindConfig().theme.fontSize['3xl'][0];
+              value.style.lineHeight = tailwindConfig().theme.fontSize['3xl'][1].lineHeight;
+              value.style.fontWeight = tailwindConfig().theme.fontWeight.bold;
+              value.style.marginRight = tailwindConfig().theme.margin[2];
+              value.style.pointerEvents = 'none';
+              const label = document.createElement('span');
+              label.classList.add('text-slate-500', 'dark:text-slate-400');
+              label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
+              label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
+              const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
               const valueText = document.createTextNode(formatValue(theValue));
               const labelText = document.createTextNode(item.text);
               value.appendChild(valueText);
@@ -193,7 +288,11 @@ function BarChart01({ data, width, height }) {
     });
     setChart(newChart);
     return () => newChart.destroy();
+<<<<<<< HEAD
     // eslint-disable-next-line react-hooks/exhaustive-deps
+=======
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
   }, []);
 
   useEffect(() => {
@@ -214,7 +313,11 @@ function BarChart01({ data, width, height }) {
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light;
     }
+<<<<<<< HEAD
     chart.update("none");
+=======
+    chart.update('none');
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
   }, [currentTheme]);
 
   return (

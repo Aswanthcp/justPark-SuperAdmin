@@ -8,6 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 "# justPark-SuperAdmin" 
 "# justPark-SuperAdmin" 
+<<<<<<< HEAD
 "# JustPark-superadmin" 
 "# justpark-SuperAdmin" 
 "# justpark-SuperAdmin" 
+=======
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487

@@ -22,5 +22,8 @@ export const update_slot_price = "update-slot-price/";
 export const get_reservations_list = "get-reservations-list/";
 export const update_reservation = "update-reservation/";
 export const update_reservation_status = "update-reservations-status/";
+<<<<<<< HEAD
 export const reservations_per_month = "reservations-per-month/";
 export const users_created_per_day = "users-created-per-day/";
+=======
+>>>>>>> 078cd476d2a3d1cd2c13f5f7c92e35d7873e3487
